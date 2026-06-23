@@ -29,6 +29,86 @@
     @apply bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold py-2 px-6 rounded-full 
            hover:from-violet-700 hover:to-indigo-700 transition-all active:scale-95 shadow-lg shadow-violet-500/25;
   }
+
+  /* Premium Glowing Button Effects */
+  .btn-glow {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .btn-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #7c3aed, #4f46e5, #d946ef, #7c3aed);
+    background-size: 300% 100%;
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(6px);
+    opacity: 0.25;
+    transition: all 0.4s ease-in-out;
+    animation: glow-pulse 8s infinite linear;
+  }
+
+  .btn-glow:hover::after {
+    filter: blur(12px);
+    opacity: 0.45;
+    inset: -1px;
+  }
+  
+  .btn-glow:active::after {
+    filter: blur(4px);
+    opacity: 0.2;
+  }
+
+  /* White glowing button effect for CTA card */
+  .btn-glow-white {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .btn-glow-white::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #ffffff, #e0e7ff, #fdf2f8, #ffffff);
+    background-size: 300% 100%;
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    animation: glow-pulse 8s infinite linear;
+  }
+
+  .dark .btn-glow-white::after {
+    background: linear-gradient(90deg, #8b5cf6, #ec4899, #6366f1, #8b5cf6);
+    filter: blur(8px);
+    opacity: 0.35;
+  }
+
+  .btn-glow-white:hover::after {
+    filter: blur(14px);
+    opacity: 0.5;
+    inset: -1px;
+  }
+
+  .btn-glow-white:active::after {
+    filter: blur(4px);
+    opacity: 0.2;
+  }
+
+  @keyframes glow-pulse {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }
 
 /* Custom Scrollbar */
@@ -47,3 +127,18 @@
 .dark ::-webkit-scrollbar-thumb {
   @apply bg-slate-800;
 }
+
+/* Custom Cursor Hiding on Desktops */
+@media (pointer: fine) {
+  body, 
+  a, 
+  button, 
+  input, 
+  textarea, 
+  select,
+  [role="button"],
+  .interactive-cursor {
+    cursor: none !important;
+  }
+}
+
